@@ -1,12 +1,8 @@
 ---
 title: "Lab 7 - Bayes"
-format: html
-editor: visual
-execute:
-  freeze: auto
-  echo: true
-  message: false
-  warning: false
+author:
+  - name: PUT YOUR NAME HERE
+    date: last-modified
 ---
 
 # Lab 7 - Bayesian Data Analysis
@@ -108,7 +104,7 @@ powerpose <- bcogsci::df_powerpose
 
 ## Describe the posterior distribution
 
--   Use `pp_check` to get a visualization of how well our model fits. How does it look? Use `ndraws=1000`
+> Use `pp_check` to get a visualization of how well our model fits. How does it look? Use `ndraws=1000`
 
 ```{r}
 
@@ -118,7 +114,7 @@ powerpose <- bcogsci::df_powerpose
 ## ANSWER
 :::
 
--   What is the mean and median difference in testosterone between high and low power pose groups?
+>  What is the mean and median difference in testosterone between high and low power pose groups?
 
 ```{r}
 
@@ -136,9 +132,16 @@ powerpose <- bcogsci::df_powerpose
 
 ## Credible Intervals
 
--   What are the 95% CIs for the difference between high and low power pose groups? Plot them using the `bayestestR` function `hdi (https://easystats.github.io/bayestestR/reference/hdi.html)`
+> What are the 95% CIs for the difference between high and low power pose groups?
 
 ```{r}
+
+```
+
+> Plot them using the `bayestestR` function `hdi (https://easystats.github.io/bayestestR/reference/hdi.html)`
+
+```{r}
+
 
 ```
 
@@ -213,3 +216,5 @@ prior1 <- prior("", class=b, coef=)
 ::: callout-note
 ## ANSWER
 :::
+
+
