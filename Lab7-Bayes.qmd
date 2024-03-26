@@ -1,11 +1,32 @@
 ---
-title: "Lab 7 - Bayes"
+title: "Lab 7 - Bayesian Data Analysis"
 author:
   - name: PUT YOUR NAME HERE
     date: last-modified
+    format:
+      html:
+        self-contained: true
+        anchor-sections: true
+        code-tools: true
+        code-fold: true
+        fig-width: 8
+        fig-height: 4
+        code-block-bg: "#f1f3f5"
+        code-block-border-left: "#31BAE9"
+        mainfont: Source Sans Pro
+        theme: journal
+        toc: true
+        toc-depth: 3
+        toc-location: left
+        captions: true
+        cap-location: margin
+        table-captions: true
+        tbl-cap-location: margin
+        reference-location: margin
+    execute:
+      warning: false
+      message: false
 ---
-
-# Lab 7 - Bayesian Data Analysis
 
 ## Instructions
 
@@ -61,7 +82,7 @@ powerpose <- bcogsci::df_powerpose
 
 ## OLS Regression
 
-> Run a frequentist regression and interpret the results.
+> Run a frequentist regression and interpret the results
 
 ```{r}
 
@@ -73,7 +94,7 @@ powerpose <- bcogsci::df_powerpose
 
 ## Bayesian Regression
 
-> Run a Bayesian regression. In the `brm` function set `chains` = 2 and `iter` = 100.
+> Run a Bayesian regression. In the `brm` function set `chains` = 2 and `iter` = 100
 
 ```{r}
 
@@ -195,7 +216,7 @@ prior1 <- prior("", class=b, coef=)
 
 ```
 
-## Model comparison
+## Model comparisons
 
 - Use a weakly informative prior
 
