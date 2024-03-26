@@ -28,16 +28,6 @@ author:
       message: false
 ---
 
-## Instructions
-
--   If you are fitting a model, display the model output in a neatly formatted table. (The `tidy` and `kable` functions can help!).
-
--   If you are creating a plot, use clear labels for all axes, titles, etc.
-
--   Commit and push your work to GitHub regularly, at least after each exercise. Write short and informative commit messages.
-
--   When you're done, we should be able to knit the final version of the QMD in your GitHub as a HTML.
-
 ## A simple Bayesian linear regression: Power posing and testosterone
 
 The data set, which was originally published in Carney, Cuddy, and Yap ([2010](https://faculty.haas.berkeley.edu/dana_carney/power.poses.PS.2010.pdf)) but released in modified form by Fosse ([2016](https://vasishth.github.io/bayescogsci/book/ch-reg.html#ref-FossePowerPose)), shows the testosterone levels of 39 different individuals, before and after treatment, where treatment refers to each individual being assigned to a high power pose or a low power pose. In the original paper by Carney, Cuddy, and Yap ([2010](https://faculty.haas.berkeley.edu/dana_carney/power.poses.PS.2010.pdf)), the unit given for testosterone measurement (estimated from saliva samples) was picograms per milliliter (pg/ml). One picogram per milliliter is 0.001 nanogram per milliliter (ng/ml).
@@ -232,7 +222,7 @@ prior1 <- prior("", class=b, coef=)
 ## ANSWER
 :::
 
-> Now, add the interaction into the model and compare a model with and without the interaction. How much evidence is there for the interaction  variable in the model?
+> Now, add the interaction into the model and compare a model with and without the interaction. How much evidence is there for the interaction variable in the model?
 
 ::: callout-note
 ## ANSWER
