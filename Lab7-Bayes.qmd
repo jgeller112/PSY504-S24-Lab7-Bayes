@@ -1,0 +1,215 @@
+---
+title: "Lab 7 - Bayes"
+format: html
+editor: visual
+execute:
+  freeze: auto
+  echo: true
+  message: false
+  warning: false
+---
+
+# Lab 7 - Bayesian Data Analysis
+
+## Instructions
+
+-   If you are fitting a model, display the model output in a neatly formatted table. (The `tidy` and `kable` functions can help!).
+
+-   If you are creating a plot, use clear labels for all axes, titles, etc.
+
+-   Commit and push your work to GitHub regularly, at least after each exercise. Write short and informative commit messages.
+
+-   When you're done, we should be able to knit the final version of the QMD in your GitHub as a HTML.
+
+## A simple Bayesian linear regression: Power posing and testosterone
+
+The data set, which was originally published in Carney, Cuddy, and Yap ([2010](https://faculty.haas.berkeley.edu/dana_carney/power.poses.PS.2010.pdf)) but released in modified form by Fosse ([2016](https://vasishth.github.io/bayescogsci/book/ch-reg.html#ref-FossePowerPose)), shows the testosterone levels of 39 different individuals, before and after treatment, where treatment refers to each individual being assigned to a high power pose or a low power pose. In the original paper by Carney, Cuddy, and Yap ([2010](https://faculty.haas.berkeley.edu/dana_carney/power.poses.PS.2010.pdf)), the unit given for testosterone measurement (estimated from saliva samples) was picograms per milliliter (pg/ml). One picogram per milliliter is 0.001 nanogram per milliliter (ng/ml).
+
+The research hypothesis is that on average, assigning a subject to a high power pose vs. a low power pose will lead to higher testosterone levels after treatment. Assuming that you know nothing about normal ranges of testosterone using salivary measurement.
+
+Investigate this claim using a linear model and the default priors of `brms`. **You'll need to estimate the effect of a new variable that encodes the change in testosterone.**
+
+In this assignment you will run both a frequentist and a Bayesian regression analysis.
+
+## Dataset
+
+```{r}
+# get data for lab
+#install from github
+#devtools::install_github("bnicenboim/bcogsci")
+library(bcogsci) # dataset for lab # install above
+library(tidyverse) # tidying and viz
+library(brms) # bayes regression
+library(modelr) # plot posterior and predictions
+library(marginaleffects) 
+library(tidybayes) # plot trace
+library(easystats) # bayestestR and see
+```
+
+```{r}
+powerpose <- bcogsci::df_powerpose
+```
+
+```{r}
+# You'll need to estimate the effect of a new variable that encodes the change in testosterone.
+
+```
+
+## Explore the data
+
+> Explore the `hptreat`, `female`, and `age` variables
+
+```{r}
+#figs
+```
+
+## OLS Regression
+
+> Run a frequentist regression and interpret the results.
+
+```{r}
+
+```
+
+::: callout-note
+## ANSWER
+:::
+
+## Bayesian Regression
+
+> Run a Bayesian regression. In the `brm` function set `chains` = 2 and `iter` = 100.
+
+```{r}
+
+```
+
+> Look at the summary output from the above model. What is wrong here?
+
+```{r}
+
+```
+
+::: callout-note
+## ANSWER
+:::
+
+> Try increasing the `chains` = 4 and `iter` = 5000
+
+```{r}
+
+
+```
+
+> How did the MCMC sampler do when we increased number of chains and iterations? Include a discussion of the diagnostics: trace plots, $\hat{R}$, ESS estimates
+
+::: callout-note
+## ANSWER
+:::
+
+## Describe the posterior distribution
+
+-   Use `pp_check` to get a visualization of how well our model fits. How does it look? Use `ndraws=1000`
+
+```{r}
+
+```
+
+::: callout-note
+## ANSWER
+:::
+
+-   What is the mean and median difference in testosterone between high and low power pose groups?
+
+```{r}
+
+```
+
+::: callout-note
+## ANSWER
+:::
+
+> What is the probability of direction (pd) for the effect? What does this mean?
+
+::: callout-note
+## ANSWER
+:::
+
+## Credible Intervals
+
+-   What are the 95% CIs for the difference between high and low power pose groups? Plot them using the `bayestestR` function `hdi (https://easystats.github.io/bayestestR/reference/hdi.html)`
+
+```{r}
+
+```
+
+## Bayes Factors (BFs)
+
+> Is the the difference between the high and low groups 0? Calculate a BF to examine this. However, before we can look at this, we need to re-run the model with a non-flat prior/weakly informative prior. We need to also make sure we sample from the prior. Use a normal prior with a mean of 0 and a standard deviation of 10.
+
+```{r}
+# you can set individual coefs or a class of params (for bs)
+prior1 <- prior("", class=b, coef=)
+
+```
+
+> Re-run the model you above with the prior you set. Set the argument `sample_prior` = true
+
+```{r}
+
+```
+
+-   Is there evidence that the difference between the groups is 0? How strong is the evidence?
+
+```{r}
+
+```
+
+## Visualizing Uncertainty
+
+-   I want you to create a plot similar to the one below for the posterior distribution
+
+![](images/clipboard-27836774.png)
+
+> Using the examples from class/slides, visualize the posterior distribution for each group along with the median point-estimate and uncertainty intervals around the estimate (80% and 95% HDI). Here are some examples here: <https://cran.r-project.org/web/packages/tidybayes/vignettes/tidy-brms.html#posterior-means-and-predictions>. Try to create a cool figure (do not just copy the one above).
+
+```{r}
+
+```
+
+## Report
+
+> What are your conclusions based on the results?
+
+::: callout-note
+## ANSWER
+:::
+
+## Priors
+
+-   The priors for this experiment were quite arbitrary. Is our posterior distribution (mean/median) sensitive to the priors that we select? Perform a sensitivity analysis to find out whether the posterior is affected by our choice of priors. Try at least 3 different priors. Feel free to go crazy with the priors :). Read this blog for ideas: https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations
+
+```{r}
+
+```
+
+## Model comparison
+
+- Use a weakly informative prior
+
+> Test if `female` factor should be included in the model using a BF as evidence. You have to add the argument `save_pars = save_pars(all=TRUE)` before you run this model
+
+```{r}
+
+```
+
+> How much evidence is there for adding the `female` variable into the model?
+
+::: callout-note
+## ANSWER
+:::
+
+> Now, add the interaction into the model and compare a model with and without the interaction. How much evidence is there for the interaction  variable in the model?
+
+::: callout-note
+## ANSWER
+:::
